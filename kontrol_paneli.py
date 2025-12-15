@@ -27,12 +27,23 @@ class KontrolPaneli(QWidget):
     def make_card(self, title, val, index):
         card = QFrame()
         card.setObjectName("ContentCard")
-        card.setFixedHeight(140)
+        card.setFixedHeight(120)
         card.setCursor(Qt.PointingHandCursor)
+        
         l = QVBoxLayout(card)
-        v = QLabel(val); v.setObjectName("StatVal")
-        t = QLabel(title); t.setObjectName("StatTitle")
-        l.addWidget(v); l.addWidget(t)
-        card.mousePressEvent = lambda event: self.parent.yonlendir(index)
+        l.setAlignment(Qt.AlignCenter)
+       
+        v = QLabel(val)
+        v.setObjectName("StatVal")
+        v.setAlignment(Qt.AlignCenter)
+        
+        t = QLabel(title)
+        t.setObjectName("StatTitle")
+        t.setAlignment(Qt.AlignCenter)
+        
+        l.addWidget(v)
+        l.addWidget(t)
+        
+        card.mousePressEvent = lambda event: self.yonetici_yonlendir(index, title)
         card.v_lbl = v
         return card
