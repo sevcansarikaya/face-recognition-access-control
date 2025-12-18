@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt
 class KontrolPaneli(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.parent = parent # Ana panele erişmek için
+        self.parent = parent 
         layout = QVBoxLayout(self)
         layout.setContentsMargins(30, 30, 30, 30)
         
@@ -47,3 +47,12 @@ class KontrolPaneli(QWidget):
         card.mousePressEvent = lambda event: self.yonetici_yonlendir(index, title)
         card.v_lbl = v
         return card
+    
+    def yonetici_yonlendir(self, index, baslik):
+        self.parent.yonlendir(index)
+        
+        if index == 3:
+            if "PERSONEL" in baslik:
+                self.parent.p_loglar.personelleri_listele()
+            else:
+                self.parent.p_loglar.loglari_listele()

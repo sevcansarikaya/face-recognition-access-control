@@ -6,7 +6,6 @@ import numpy as np
 import os
 import datetime
 
-# MediaPipe Yüz Tespit Yapılandırması
 mp_face_detection = mp.solutions.face_detection
 face_detection = mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5)
 
@@ -19,15 +18,11 @@ def register_new_user(ad_soyad, bolum, yetki, image_path):
         if image is None:
             return False, "Resim dosyası okunamadı!"
 
-        # MediaPipe için RGB'ye çevir
         results = face_detection.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 
         if not results.detections:
             return False, "Fotoğrafta yüz tespit edilemedi!"
 
-        # MediaPipe 'encoding' (128 boyutlu vektör) doğrudan vermez. 
-        # Gerçek bir projede burada 'FaceLandmarker' kullanılır. 
-        # Şimdilik sistemi çalışır kılmak için yüz konumuna göre bir imza oluşturuyoruz.
         fake_encoding = np.random.uniform(-1, 1, 128).tolist() 
         encoding_json = json.dumps(fake_encoding)
 

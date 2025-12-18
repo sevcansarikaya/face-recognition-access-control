@@ -19,7 +19,6 @@ class LoginEkranı(QWidget):
         ana_layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(ana_layout)
 
-        # Stil Sayfası (QSS) - Profesyonel Renk Paleti
         self.setStyleSheet("""
             QWidget { background-color: #121212; }
             QFrame#MainCard { 

@@ -4,13 +4,10 @@ from PyQt5.QtCore import Qt
 import sqlite3
 import os
 
-# Daha önce yazdığımız yüz işleme fonksiyonunu buraya dahil edeceğiz
-# Şimdilik hata almamak için dosyanın üstünde dursun
-
 class KisiKayit(QWidget):
     def __init__(self, parent=None):
         super().__init__()
-        self.parent = parent # Ana panele erişmek ve istatistikleri güncellemek için
+        self.parent = parent
         self.secilen_yol = None
         self.arayuz_olustur()
 
@@ -60,9 +57,7 @@ class KisiKayit(QWidget):
             QMessageBox.warning(self, "Hata", "Lütfen isim girin ve bir fotoğraf seçin!")
             return
 
-        # BURASI ÇOK ÖNEMLİ: Yüz tanıma motoruna gidiyoruz
         try:
-            # face_core.py dosyasındaki fonksiyonu çağırıyoruz
             import face_core 
             success, mesaj = face_core.register_new_user(ad, bolum, 0, self.secilen_yol)
             
@@ -72,7 +67,6 @@ class KisiKayit(QWidget):
                 self.txt_bolum.clear()
                 self.lbl_preview.setText("FOTOĞRAF ÖNİZLEME")
                 self.secilen_yol = None
-                # Ana sayfadaki sayıyı güncelle
                 if self.parent:
                     self.parent.istatistikleri_guncelle()
             else:
