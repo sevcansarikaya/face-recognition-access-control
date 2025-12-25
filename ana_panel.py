@@ -3,6 +3,7 @@ import sqlite3
 import datetime
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+import face_core
 
 # Kendi dosyalarımızı çekiyoruz
 from kontrol_paneli import KontrolPaneli
